@@ -1,3 +1,5 @@
+/*175. Combine Two Tables
+
 Table: Person
 
 +-------------+---------+
@@ -59,12 +61,11 @@ Output:
 +-----------+----------+---------------+----------+
 Explanation: 
 There is no address in the address table for the personId = 1 so we return null in their city and state.
-addressId = 1 contains information about the address of personId = 2.
+addressId = 1 contains information about the address of personId = 2.*/
 
-
-Solution:
+-- Solution:
 
 SELECT P.firstName, P.lastName, A.city, A.state
 FROM Person AS P
 LEFT JOIN Address as A
-ON P.personID = A.personID 
+ON P.personID = A.personID;
