@@ -41,7 +41,17 @@ Result table:
 
 -- Solution:
 
+WITH RankedDevices AS (
+    SELECT
+        player_id,
+        device_id,
+        event_date,
+        ROW_NUMBER() OVER (PARTITION BY player_id ORDER BY event_date ASC) AS rn
+    FROM Activity
+)
+
 SELECT
     player_id,
-    ROW_NUMBER(1) OVER (PARTITION BY player_id ORDER BY event_date ASC) AS device_id
-FROM Activity
+    device_id
+FROM RankedDevices
+WHERE rn = 1;

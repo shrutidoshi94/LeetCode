@@ -27,15 +27,12 @@ Table: Sales
 This table can have duplicate rows.
 product_id is a foreign key (reference column) to the Product table.
 Each row of this table contains some information about one sale.
- 
 
 Write a solution to report the products that were only sold in the first quarter of 2019. That is, between 2019-01-01 and 2019-03-31 inclusive.
 
 Return the result table in any order.
 
 The result format is in the following example.
-
- 
 
 Example 1:
 
@@ -71,7 +68,9 @@ We return only product 1 as it is the product that was only sold in the spring o
 
 -- Solution:
 
-SELECT p.product_id, p.product_name
+SELECT 
+    DISTINCT p.product_id, 
+    DISTINCT p.product_name
 FROM Product p
 JOIN Sales s 
 ON p.product_id = s.product_id
@@ -79,3 +78,17 @@ GROUP BY p.product_id, p.product_name
 HAVING 
     MIN(s.sale_date) >= '2019-01-01'
     AND MAX(s.sale_date) <= '2019-03-31';
+
+-- Incorrect Solution:
+
+SELECT
+	DISTINCT S.product_id
+	P.product_name
+FROM Sales AS S
+JOIN Product AS P
+ON S.product_id = P.product_id
+GROUP BY P.product_id, P.product_name
+HAVING S.sale_date < ‘ 2019-01-01’
+OR S.sale_date > ‘2019-03-31’
+
+-- You cannot directly use a non-aggregated column like S.sale_date in a HAVING clause when you are GROUP BY product_id.

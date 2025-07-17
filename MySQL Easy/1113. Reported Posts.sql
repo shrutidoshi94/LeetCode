@@ -14,7 +14,6 @@ Table: Actions
 There is no primary key for this table, it may have duplicate rows.
 The action column is an ENUM type of ('view', 'like', 'reaction', 'comment', 'report', 'share').
 The extra column has optional information about the action such as a reason for report or a type of reaction. 
- 
 
 Write an SQL query that reports the number of posts reported yesterday for each report reason. Assume today is 2019-07-05.
 
@@ -50,8 +49,11 @@ Note that we only care about report reasons with non zero number of reports.*/
 
 -- Solution:
 
-SELECT extra as report_reason, COUNT(DISTINCT post_id) AS report_count -- count distinct posts only
+SELECT 
+    extra as report_reason, 
+    COUNT(DISTINCT post_id) AS report_count -- count distinct posts only
 FROM Actions
 WHERE action = 'report'
 AND action_date = '2019-07-04' -- yesterday
-GROUP BY extra;
+GROUP BY extra
+HAVING COUNT(DISTINCT post_id) > 0; -- only include reasons with reports

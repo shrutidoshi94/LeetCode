@@ -1,4 +1,5 @@
 /*1076. Project Employees II
+
 Table: Project
 
 +-------------+---------+
@@ -9,6 +10,7 @@ Table: Project
 +-------------+---------+
 (project_id, employee_id) is the primary key of this table.
 employee_id is a foreign key to Employee table.
+
 Table: Employee
 
 +------------------+---------+
@@ -19,7 +21,6 @@ Table: Employee
 | experience_years | int     |
 +------------------+---------+
 employee_id is the primary key of this table.
- 
 
 Write an SQL query that reports all the projects that have the most employees.
 
@@ -61,13 +62,15 @@ GROUP BY project_id
 HAVING COUNT(employee_id) = (
     SELECT MAX(project_count)
     FROM (
-        SELECT project_id, COUNT(employee_id) AS project_count
+        SELECT 
+            project_id, 
+            COUNT(employee_id) AS project_count
         FROM Project
         GROUP BY project_id
-    ) AS sub
+        ) AS sub
 );
 
--- Alternative solution using ALL:
+-- Alternative best solution using ALL:
 SELECT project_id
 FROM Project
 GROUP BY project_id
@@ -77,7 +80,7 @@ HAVING COUNT(employee_id) >= ALL (
     GROUP BY project_id
 );
 
--- Wrong solution:
+-- Alternative solution:
 SELECT project_id
 FROM Project 
 GROUP BY project_id
@@ -87,5 +90,3 @@ HAVING COUNT(employee_id) =
     GROUP BY project_id
     ORDER BY COUNT(employee_id) DESC
     LIMIT 1)
-
--- LIMIT cannot be used as this subquery does not return a scalar value directly — it returns a result set, and LIMIT on its own inside a subquery used in a scalar comparison (= in HAVING) can fail or behave unpredictably in MySQL or other SQL engines.

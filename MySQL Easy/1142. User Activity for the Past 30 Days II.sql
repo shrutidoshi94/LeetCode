@@ -50,9 +50,12 @@ User 1 and 2 each had 1 session in the past 30 days while user 3 had 2 sessions 
 
 SELECT ROUND(AVG(session_count), 2) AS average_sessions_per_user
 FROM (
-    SELECT user_id, COUNT(DISTINCT session_id) AS session_count
+    SELECT 
+        user_id, 
+        COUNT(DISTINCT session_id) AS session_count
     FROM Activity
     WHERE activity_date BETWEEN DATE_SUB('2019-07-27', INTERVAL 29 DAY) AND '2019-07-27'
+    AND activity_type IS NOT NULL
     GROUP BY user_id
 ) AS user_sessions;
 

@@ -12,7 +12,6 @@ Table: Employee
 +-------------+---------+
 empId is the column with unique values for this table.
 Each row of this table indicates the name and the ID of an employee in addition to their salary and the id of their manager.
- 
 
 Table: Bonus
 
@@ -32,8 +31,6 @@ Write a solution to report the name and bonus amount of each employee with a bon
 Return the result table in any order.
 
 The result format is in the following example.
-
- 
 
 Example 1:
 
