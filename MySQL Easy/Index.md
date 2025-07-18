@@ -1,3 +1,6 @@
+# INDEX
+
+
 | LeetCode Problem                                                                                                                                         | Comment                                                    | **Status**                 |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------- |
 | [175. Combine Two Tables](./175.%20Combine%20Two%20Tables.sql)                                                                                           | `LEFT JOIN`                                                | ✅ Completed               |
@@ -42,7 +45,7 @@
 | [1294. Weather Type In Each Country](./1294.%20Weather%20Type%20in%20Each%20Country.sql)                                                                 | `CASE` + `JOIN` + `GROUP BY` + `ONLY_FULL_GROUP_BY`        | ✅ Completed               |
 | [1303. Find The Team Size](./1303.%20Find%20The%20Team%20Size.sql)                                                                                       | CTE +`JOIN`                                                | ✅ Completed               |
 | [1322. Ads Performance](./1322.%20Ads%20Performance.sql)                                                                                                 | <br/>                                                      | 🟡 Review                  |
-| [1327. List The Products Ordered In A Period](./1327.%20List%20The%20Products%20Ordered%20In%20A%20Period.sql)    | `JOIN` + `WHERE` + `GROUP BY` + `HAVING`                   | ✅ Completed               |
+| [1327. List The Products Ordered In A Period](./1327.%20List%20The%20Products%20Ordered%20In%20A%20Period.sql)                                           | `JOIN` + `WHERE` + `GROUP BY` + `HAVING`                   | ✅ Completed               |
 | 1350. Students With Invalid Departments                                                                                                                  | <br/>                                                      | <br/>                      |
 | 1378. Replace Employee ID With The Unique Identifier                                                                                                     | <br/>                                                      | <br/>                      |
 | 1407. Top Travellers                                                                                                                                     | <br/>                                                      | <br/>                      |
