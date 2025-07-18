@@ -14,7 +14,6 @@ This table may have duplicate rows.
 This table contains information collected from some queries on a database.
 The position column has a value from 1 to 500.
 The rating column has a value from 1 to 5. Query with rating less than 3 is a poor query.
- 
 
 We define query quality as:
 
@@ -31,8 +30,6 @@ Both quality and poor_query_percentage should be rounded to 2 decimal places.
 Return the result table in any order.
 
 The result format is in the following example.
-
- 
 
 Example 1:
 
@@ -69,4 +66,11 @@ SELECT
     ROUND(AVG(rating / position),2) AS quality,
     ROUND(AVG(rating < 3) * 100, 2) AS poor_query_percentage
 FROM Queries
+WHERE query_name IS NOT NULL
 GROUP BY query_name
+
+-- AVG(rating < 3) counts the number of poor queries (rating < 3) and divides it by the total number of queries to get the percentage.
+
+ROUND(SUM(CASE WHEN rating < 3 THEN 1 ELSE 0 END) * 100 / COUNT(*), 2) AS poor_query_percentage
+
+-- This calculates the percentage of poor queries by counting how many queries have a rating less than 3, dividing by the total number of queries, and multiplying by 100 to convert it to a percentage.
