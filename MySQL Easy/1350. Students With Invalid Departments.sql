@@ -23,15 +23,12 @@ Table: Students
 +---------------+---------+
 In SQL, id is the primary key of this table.
 The table has information about the id of each student at a university and the id of the department he/she studies at.
- 
 
 Find the id and the name of all students who are enrolled in departments that no longer exist.
 
 Return the result table in any order.
 
 The result format is in the following example.
-
- 
 
 Example 1:
 
@@ -73,3 +70,11 @@ John, Daiana, Steve, and Jasmine are enrolled in departments 14, 33, 74, and 77 
 */
 
 -- Solution:
+
+SELECT 
+	S.department_id AS id,
+	S.name 
+FROM Students AS S
+LEFT JOIN Department AS D
+ON S.department_id = D.id
+WHERE D.id IS NULL
